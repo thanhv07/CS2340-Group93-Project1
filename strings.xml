@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CS 2340 Project 1</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Home</string>
+    <string name="second_fragment_label">Tasks</string>
+    <string name="courses">Courses</string>
+    <string name="assignments">Assignments</string>
+    <string name="exams">Exams</string>
+    <string name="todolist">To-Do List</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum"> How Will You Manage?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
