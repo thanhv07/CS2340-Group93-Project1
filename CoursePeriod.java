@@ -1,4 +1,3 @@
-package CalendarShit;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,9 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     public static String[] week = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //weekday strings array
 
+    public static final MyDate DEFAULT_START_DATE = new MyDate("01/08/2024");
+    public static final MyDate DEFAULT_END_DATE = new MyDate("05/02/2024");
+
     private MyDate startDate; // the first day of a semester
     private MyDate endDate; // the last day of a semester
     private int dayOfWeek; // The day of class. Sunday is 0; Monday is 1; Saturday is 6.
@@ -29,11 +31,10 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
     private List<MyDate> dateList;
 
     /**
-     *
      * @param startDate the first day of a semester
-     * @param endDate the last day of a semester
+     * @param endDate   the last day of a semester
      * @param startTime the start time for the course
-     * @param endTime the end time for the course
+     * @param endTime   the end time for the course
      * @param dayOfWeek the course in on which day of a week
      */
     public CoursePeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime, int dayOfWeek) {
@@ -46,13 +47,36 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
     }
 
     /**
+     * A constructor using default start date and end date.
+     *
+     * @param startTime the start time for the course
+     * @param endTime   the end time for the course
+     * @param dayOfWeek the course in on which day of a week
+     */
+    public CoursePeriod(MyTime startTime, MyTime endTime, int dayOfWeek) {
+        this(DEFAULT_START_DATE, DEFAULT_END_DATE, startTime, endTime, dayOfWeek);
+    }
+
+    /**
+     * A constructor using default start date and end date.
+     * startTime and endTime are String for this method.
+     *
+     * @param startTime the start time for the course
+     * @param endTime   the end time for the course
+     * @param dayOfWeek the course in on which day of a week
+     */
+    public CoursePeriod(String startTime, String endTime, int dayOfWeek) {
+        this(new MyTime(startTime), new MyTime(endTime), dayOfWeek);
+    }
+
+    /**
      * Initialize dateList
      */
     private void dateListInit() {
         dateList = new ArrayList<>();
 
         MyDate currDate = startDate;
-        while (currDate.getDayOfWeek() != dayOfWeek ){
+        while (currDate.getDayOfWeek() != dayOfWeek) {
             currDate = currDate.tomorrow();
         }
 
@@ -64,6 +88,7 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     /**
      * getter of dateList
+     *
      * @return dateList
      */
     public List<MyDate> getDateList() {
@@ -72,6 +97,7 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     /**
      * Test if there is class on a certain date
+     *
      * @param date the date to check
      * @return true if there is class on that date
      */
@@ -81,6 +107,7 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     /**
      * getter of dayOfWeek
+     *
      * @return dayOfWeek
      */
     public int getDayOfWeek() {
@@ -89,22 +116,25 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     /**
      * getter of startTime
+     *
      * @return startTime
      */
-    public MyTime getStartTime(){
+    public MyTime getStartTime() {
         return startTime;
     }
 
     /**
      * getter of endTime
+     *
      * @return endTime
      */
-    public MyTime getEndTime(){
+    public MyTime getEndTime() {
         return endTime;
     }
 
     /**
      * override toString()
+     *
      * @return a string looking like "Wed: 12:30 - 13:45"
      */
     @Override
@@ -114,6 +144,7 @@ public class CoursePeriod implements Comparable<CoursePeriod>, Serializable {
 
     /**
      * compare two CoursePeriods.
+     *
      * @param period2 the object to be compared.
      * @return If two periods have different dayOfWeeks, the one with lower dayOfWeek is "smaller".
      * When the dayOfWeeks are the same, the one with earlier startTime is "smaller".
