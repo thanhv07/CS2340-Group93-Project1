@@ -1,5 +1,6 @@
-package CalendarShit;
+package com.example.myapplication;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -82,6 +83,20 @@ public class TaskCalendar {
         Task[] out = new Task[size];
         for (int i = 0; i < size; i++) {
             out[i] = calendar[i];
+        }
+        return out;
+    }
+
+    /**
+     * Returns all tasks in the form of their toString() methods
+     * in an ArrayList<String> of the appropriate size.
+     *
+     * @return ArrayList w/all tasks in their toString() forms.
+     */
+    ArrayList<String> toStringArrayList() {
+        ArrayList<String> out = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            out.add(calendar[i].toString());
         }
         return out;
     }
