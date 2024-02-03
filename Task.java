@@ -1,4 +1,3 @@
-package CalendarShit;
 import java.io.Serializable;
 
 /**
@@ -55,10 +54,24 @@ public class Task extends Activity implements Comparable<Task> {
      * Compares one task to the other.
      *
      * @param o the object to be compared.
-     * @return integer representing the two
+     * @return compare due date first. If due dates are the same, compare dueTime.
      */
     @Override
     public int compareTo(Task o) {
-        return 0;
+        int result = date.compareTo(o.date);
+        if (result != 0) {
+            return result;
+        }else {
+            return timeDue.compareTo(o.timeDue);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task task2) {
+            return this.name.equals(task2.name) && this.date.equals(task2.date) && this.timeDue.equals(task2.timeDue);
+        }else {
+            return false;
+        }
     }
 }
